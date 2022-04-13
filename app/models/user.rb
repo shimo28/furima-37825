@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   ZENKAKU = /\A[ぁ-んァ-ン一-龥]/
-  ZENKAKU_KANA = /\A[ァ-ヶー－]+\z/
+  ZENKAKU_KANA = /\A[ぁ-んァ-ン一-龥々ー]+\z/
   validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'は半角英数を両方含む必要があります'}
   validates :nickname,        presence: true
   validates :first_name,      presence: true, format: { with: ZENKAKU, message: 'は全角文字を使用してください'}
