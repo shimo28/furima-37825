@@ -8,5 +8,6 @@ FactoryBot.define do
     building_name { 'test' }
     association :user
     association :item
+    token {"tok_abcdefghijk00000000000000000"}
   end
 end

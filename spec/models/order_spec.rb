@@ -89,6 +89,11 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone number of characters is 10 to 11 and not include hyphen(-)")
       end
+      it "tokenが空では登録できないこと" do
+        @order.token = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
