@@ -5,7 +5,7 @@ RSpec.describe Order, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
     @order = FactoryBot.build(:order, user_id: user.id, item_id: item.id)
-    sleep 0.1 
+    sleep 0.1
   end
 
   describe '商品購入機能' do
@@ -57,39 +57,39 @@ RSpec.describe Order, type: :model do
       it 'zipは3桁ハイフン4桁でないと保存できない' do
         @order.zip = '1234-1234'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Zip is invalid. Include hyphen(-)")
+        expect(@order.errors.full_messages).to include('Zip is invalid. Include hyphen(-)')
       end
       it 'zipはハイフンがないと保存できない' do
         @order.zip = '1234567'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Zip is invalid. Include hyphen(-)")
+        expect(@order.errors.full_messages).to include('Zip is invalid. Include hyphen(-)')
       end
       it 'zipは半角文字列でないと保存できない' do
         @order.zip = '123ー1234'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Zip is invalid. Include hyphen(-)")
+        expect(@order.errors.full_messages).to include('Zip is invalid. Include hyphen(-)')
       end
       it 'phone_numberが10桁未満では保存できない' do
         @order.phone_number = '123456789'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number of characters is 10 to 11 and not include hyphen(-)")
+        expect(@order.errors.full_messages).to include('Phone number of characters is 10 to 11 and not include hyphen(-)')
       end
       it 'phone_numberが12桁以上では保存できない' do
         @order.phone_number = '123422343234'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number of characters is 10 to 11 and not include hyphen(-)")
+        expect(@order.errors.full_messages).to include('Phone number of characters is 10 to 11 and not include hyphen(-)')
       end
       it 'phone_numberは数値でないと保存できない' do
         @order.phone_number = '080-1234-5678'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number of characters is 10 to 11 and not include hyphen(-)")
+        expect(@order.errors.full_messages).to include('Phone number of characters is 10 to 11 and not include hyphen(-)')
       end
       it 'phone_numberは半角でないと保存できない' do
         @order.phone_number = '０１２３４５６７８９'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number of characters is 10 to 11 and not include hyphen(-)")
+        expect(@order.errors.full_messages).to include('Phone number of characters is 10 to 11 and not include hyphen(-)')
       end
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @order.token = nil
         @order.valid?
         expect(@order.errors.full_messages).to include("Token can't be blank")
